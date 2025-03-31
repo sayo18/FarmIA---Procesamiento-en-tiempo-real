@@ -1,0 +1,27 @@
+{
+  "namespace": "com.farmia.sales",
+  "name": "SalesTransaction",
+  "type": "record",
+  "fields": [
+    {
+      "name": "transaction_id",
+      "type": "string"
+    },
+    {
+      "name": "product_id",
+      "type": "string"
+    },
+    {
+      "name": "category",
+      "type": "string"
+    },
+    {
+      "name": "quantity",
+      "type": "int"
+    },
+    {
+      "name": "price",
+      "type": "double"
+    }
+  ]
+}

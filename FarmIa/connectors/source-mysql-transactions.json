@@ -1,0 +1,25 @@
+{
+  "name": "source-mysql-transactions",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "tasks.max": "1",
+    "connection.url": "jdbc:mysql://mysql:3306/db?user=user&password=password&useSSL=false",
+    "table.whitelist": "sales_transactions",
+    "mode": "timestamp",
+    "timestamp.column.name": "timestamp",
+    "transforms": "createKey,extractKey,castPrice,setTopic,InsertSchema",
+    "transforms.createKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+    "transforms.createKey.fields": "category",
+    "transforms.extractKey.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+    "transforms.extractKey.field": "category",
+    "transforms.setTopic.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.setTopic.regex": "(.*)",
+    "transforms.setTopic.replacement": "sales-transactions",
+    "transforms.castPrice.type": "org.apache.kafka.connect.transforms.Cast$Value",
+    "transforms.castPrice.spec": "price:float64",
+    "transforms.InsertSchema.type": "org.apache.kafka.connect.transforms.SetSchemaMetadata$Value",
+    "transforms.InsertSchema.schema.name": "com.farmia.sales.SalesTransaction",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081"
+  }
+}

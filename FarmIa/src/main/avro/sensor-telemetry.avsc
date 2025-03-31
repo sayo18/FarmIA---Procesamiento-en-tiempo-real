@@ -1,0 +1,30 @@
+{
+  "namespace": "com.farmia.iot",
+  "name": "SensorTelemetry",
+  "type": "record",
+  "fields": [
+    {
+      "name": "sensor_id",
+      "type": "string"
+    },
+    {
+      "name": "timestamp",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "temperature",
+      "type": "float"
+    },
+    {
+      "name": "humidity",
+      "type": "float"
+    },
+    {
+      "name": "soil_fertility",
+      "type": "float"
+    }
+  ]
+}
